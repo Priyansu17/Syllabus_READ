@@ -48,8 +48,8 @@ export const RevealSection: React.FC<RevealSectionProps> = ({
   return (
     <section
       ref={ref}
-      className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+      className={`transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       } ${className}`}
       {...rest}
     >

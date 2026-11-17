@@ -127,7 +127,7 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
           </div>
           <div className="h-1.5 w-full rounded-full bg-[var(--bg-muted)] overflow-hidden">
             <div
-              className="h-full bg-[var(--accent-primary)] transition-all duration-500 rounded-full"
+              className="h-full bg-[var(--accent-primary)] transition-all duration-700 ease-out rounded-full"
               style={{ width: `${mastery.percentage}%` }}
             />
           </div>
@@ -281,7 +281,7 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
                 <button
                   type="button"
                   onClick={() => toggleUnit(unit.unitNumber)}
-                  className="w-full flex items-start justify-between gap-2 px-2 py-2 text-left rounded hover:bg-[var(--bg-subtle)] cursor-pointer"
+                  className="w-full flex items-start justify-between gap-2 px-2 py-2 text-left rounded hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer group"
                 >
                   <div>
                     <div className="text-[11px] font-mono text-[var(--accent-warm)]">
@@ -291,15 +291,15 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
                       {unit.title}
                     </div>
                   </div>
-                  {isExpanded ? (
-                    <ChevronDown className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-1" />
-                  ) : (
-                    <ChevronRight className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-1" />
-                  )}
+                  <ChevronDown
+                    className={`w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] shrink-0 mt-1 transition-transform duration-200 ${
+                      isExpanded ? 'rotate-0' : '-rotate-90'
+                    }`}
+                  />
                 </button>
 
                 {isExpanded && (
-                  <ul className="mt-1 space-y-0.5 pl-1 m-0 list-none">
+                  <ul className="mt-1 space-y-0.5 pl-1 m-0 list-none animate-fade-in">
                     {matchingTopics.map((topic) => {
                       const active = curriculumSubView === 'topic' && topic.id === activeTopicId;
                       const done = completedIds.has(topic.id);
@@ -312,9 +312,9 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
                               onSelectTopic(topic.id);
                               onCloseMobile();
                             }}
-                            className={`w-full flex items-start justify-between gap-2 px-2.5 py-2 rounded text-left text-xs transition-colors cursor-pointer ${
+                            className={`w-full flex items-start justify-between gap-2 px-2.5 py-2 rounded text-left text-xs transition-all duration-150 hover:translate-x-1 active:scale-[0.99] cursor-pointer ${
                               active
-                                ? 'bg-[var(--accent-primary)] text-[var(--bg-surface)] font-semibold'
+                                ? 'bg-[var(--accent-primary)] text-[var(--bg-surface)] font-semibold shadow-xs'
                                 : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]'
                             }`}
                           >
@@ -368,11 +368,11 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
       {isOpenMobile && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-black/40"
+            className="fixed inset-0 bg-black/40 backdrop-blur-[2px] animate-fade-in"
             onClick={onCloseMobile}
             aria-hidden="true"
           />
-          <aside className="relative w-80 max-w-[85vw] bg-[var(--bg-surface)] h-full border-r border-[var(--border-hairline)] z-10">
+          <aside className="relative w-80 max-w-[85vw] bg-[var(--bg-surface)] h-full border-r border-[var(--border-hairline)] z-10 animate-slide-in-left shadow-2xl">
             {sidebarContent}
           </aside>
         </div>

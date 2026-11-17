@@ -185,7 +185,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
             <button
               type="button"
               onClick={() => onOpenDoubtSolver()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-[var(--accent-primary)] bg-[var(--bg-subtle)] text-[var(--accent-primary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-surface)] transition-all duration-200 hover:scale-102 whitespace-nowrap cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-[var(--accent-primary)] bg-[var(--bg-subtle)] text-[var(--accent-primary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-surface)] transition-all duration-200 hover:-translate-y-0.5 active:scale-95 whitespace-nowrap cursor-pointer shadow-2xs"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Ask Doubt
@@ -194,10 +194,10 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
               type="button"
               onClick={() => onToggleBookmark(topic.id)}
               aria-pressed={isBookmarked}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:scale-105 ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:-translate-y-0.5 active:scale-95 ${
                 isBookmarked
                   ? 'border-[var(--accent-amber)] bg-[var(--bg-subtle)] text-[var(--accent-amber)]'
-                  : 'border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  : 'border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
               }`}
             >
               <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
@@ -207,7 +207,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
               type="button"
               onClick={() => onToggleComplete(topic.id)}
               aria-pressed={isCompleted}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:scale-105 ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:-translate-y-0.5 active:scale-95 ${
                 isCompleted
                   ? 'border-[var(--accent-sage)] bg-[var(--accent-sage)] text-[var(--bg-surface)] shadow-xs'
                   : 'border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
@@ -261,7 +261,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
 
       {/* TAB 1: OVERVIEW & THEORY */}
       {activeTab === 'theory' && (
-        <div className="space-y-8">
+        <div key="tab-theory" className="space-y-8 animate-fade-in">
           {/* Sticky "On This Page" Section Spy Strip */}
           <nav
             aria-label="Lesson section navigation"
@@ -617,7 +617,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
 
       {/* TAB 2: INTERACTIVE LAB */}
       {activeTab === 'lab' && (
-        <div className="space-y-4">
+        <div key="tab-lab" className="space-y-4 animate-fade-in">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-[var(--text-secondary)] m-0">
               {topic.simulationCaption}
@@ -639,7 +639,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
 
       {/* TAB 3: CODE EXAMPLES */}
       {activeTab === 'examples' && (
-        <div className="space-y-6">
+        <div key="tab-examples" className="space-y-6 animate-fade-in">
           {(['basic', 'intermediate', 'advanced'] as const).map((tierKey) => {
             const ex = topic.examples[tierKey];
             const isPreviewOpen = previewTier === tierKey;
@@ -718,7 +718,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
 
       {/* TAB 4: QUIZ, FLASHCARDS & ASSIGNMENT */}
       {activeTab === 'practice' && (
-        <div className="space-y-8">
+        <div key="tab-practice" className="space-y-8 animate-fade-in">
           {/* Interactive Quiz */}
           <section className="space-y-4">
             <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] m-0">
@@ -851,7 +851,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
 
       {/* TAB 5: UNIVERSITY EXAM Q&A */}
       {activeTab === 'exam' && (
-        <div className="space-y-4">
+        <div key="tab-exam" className="space-y-4 animate-fade-in">
           <p className="text-sm text-[var(--text-secondary)] m-0">
             Structured 2-Mark (short precision) and 7-Mark (comprehensive analytical) university exam answers.
           </p>
@@ -880,7 +880,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
           type="button"
           disabled={!hasPrev}
           onClick={onPrev}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-medium rounded border border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-medium rounded border border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 disabled:hover:translate-y-0 disabled:active:scale-100"
         >
           <ChevronLeft className="w-4 h-4" />
           Previous Topic
@@ -889,7 +889,7 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
           type="button"
           disabled={!hasNext}
           onClick={onNext}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded bg-[var(--accent-primary)] text-[var(--bg-surface)] disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-[var(--bg-surface)] disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed transition-all duration-200 hover:-translate-y-0.5 active:scale-95 disabled:hover:translate-y-0 disabled:active:scale-100 shadow-xs hover:shadow-md"
         >
           Next Topic
           <ChevronRight className="w-4 h-4" />

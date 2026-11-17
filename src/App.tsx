@@ -271,67 +271,71 @@ export default function App() {
             </div>
 
             {curriculumSubView === 'overview' ? (
-              <ErrorBoundary
-                fallbackTitle="Curriculum Overview encountered an error"
-                onReset={() => setCurriculumSubView('topic')}
-              >
-                <CurriculumOverview
-                  units={SYLLABUS_UNITS}
-                  allTopics={ALL_TOPICS_FLAT}
-                  completedIds={completedIds}
-                  bookmarkedIds={bookmarkedIds}
-                  studyHistory={studyHistory}
-                  onSelectTopic={handleSelectTopic}
-                  onToggleComplete={toggleComplete}
-                />
-              </ErrorBoundary>
+              <div key="curriculum-overview" className="animate-fade-in">
+                <ErrorBoundary
+                  fallbackTitle="Curriculum Overview encountered an error"
+                  onReset={() => setCurriculumSubView('topic')}
+                >
+                  <CurriculumOverview
+                    units={SYLLABUS_UNITS}
+                    allTopics={ALL_TOPICS_FLAT}
+                    completedIds={completedIds}
+                    bookmarkedIds={bookmarkedIds}
+                    studyHistory={studyHistory}
+                    onSelectTopic={handleSelectTopic}
+                    onToggleComplete={toggleComplete}
+                  />
+                </ErrorBoundary>
+              </div>
             ) : (
-              <TopicReader
-                topic={activeTopic}
-                isCompleted={completedIds.has(activeTopic.id)}
-                isBookmarked={bookmarkedIds.has(activeTopic.id)}
-                onToggleComplete={toggleComplete}
-                onToggleBookmark={toggleBookmark}
-                hasPrev={activeIndex > 0}
-                hasNext={activeIndex < ALL_TOPICS_FLAT.length - 1}
-                onPrev={() =>
-                  activeIndex > 0 && handleSelectTopic(ALL_TOPICS_FLAT[activeIndex - 1].id)
-                }
-                onNext={() =>
-                  activeIndex < ALL_TOPICS_FLAT.length - 1 &&
-                  handleSelectTopic(ALL_TOPICS_FLAT[activeIndex + 1].id)
-                }
-                onOpenInSandbox={handleOpenInSandbox}
-                onOpenDoubtSolver={(prompt) => {
-                  if (prompt) setDoubtInitialPrompt(prompt);
-                  setDoubtDrawerOpen(true);
-                }}
-              />
+              <div key={`topic-${activeTopic.id}`} className="animate-fade-in">
+                <TopicReader
+                  topic={activeTopic}
+                  isCompleted={completedIds.has(activeTopic.id)}
+                  isBookmarked={bookmarkedIds.has(activeTopic.id)}
+                  onToggleComplete={toggleComplete}
+                  onToggleBookmark={toggleBookmark}
+                  hasPrev={activeIndex > 0}
+                  hasNext={activeIndex < ALL_TOPICS_FLAT.length - 1}
+                  onPrev={() =>
+                    activeIndex > 0 && handleSelectTopic(ALL_TOPICS_FLAT[activeIndex - 1].id)
+                  }
+                  onNext={() =>
+                    activeIndex < ALL_TOPICS_FLAT.length - 1 &&
+                    handleSelectTopic(ALL_TOPICS_FLAT[activeIndex + 1].id)
+                  }
+                  onOpenInSandbox={handleOpenInSandbox}
+                  onOpenDoubtSolver={(prompt) => {
+                    if (prompt) setDoubtInitialPrompt(prompt);
+                    setDoubtDrawerOpen(true);
+                  }}
+                />
+              </div>
             )}
           </main>
         </div>
       )}
 
       {activeView === 'simulations' && (
-        <main className="flex-1">
+        <main key="view-simulations" className="flex-1 animate-fade-in">
           <SimulationsHub />
         </main>
       )}
 
       {activeView === 'html-ref' && (
-        <main className="flex-1">
+        <main key="view-html-ref" className="flex-1 animate-fade-in">
           <HtmlTagsReference onOpenInSandbox={handleOpenInSandbox} />
         </main>
       )}
 
       {activeView === 'exam-guide' && (
-        <main className="flex-1">
+        <main key="view-exam-guide" className="flex-1 animate-fade-in">
           <ExamPrepView onJumpToTopic={handleSelectTopic} />
         </main>
       )}
 
       {activeView === 'sandbox' && (
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-8 py-8 space-y-5">
+        <main key="view-sandbox" className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-8 py-8 space-y-5 animate-fade-in">
           <header className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
             <div>
               <div className="text-xs font-mono text-[var(--accent-warm)]">
@@ -344,7 +348,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveView('curriculum')}
-              className="px-3.5 py-1.5 text-xs font-semibold rounded border border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-semibold rounded border border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
             >
               Back to Curriculum
             </button>
@@ -359,7 +363,7 @@ export default function App() {
           type="button"
           onClick={() => setDoubtDrawerOpen(true)}
           aria-label="Open Doubt Solver Assistant"
-          className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-[var(--bg-surface)] shadow-lg hover:shadow-xl text-xs sm:text-sm font-semibold cursor-pointer transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 ring-4 ring-[var(--accent-primary)]/20 active:scale-95"
+          className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-[var(--bg-surface)] shadow-lg hover:shadow-2xl text-xs sm:text-sm font-semibold cursor-pointer transition-all duration-300 hover:scale-105 hover:-translate-y-1 ring-4 ring-[var(--accent-primary)]/20 active:scale-95 animate-pulse-teal"
         >
           <Sparkles className="w-4 h-4" />
           <span>Ask Study Assistant</span>

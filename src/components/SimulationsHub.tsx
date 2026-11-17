@@ -91,10 +91,10 @@ export const SimulationsHub: React.FC = () => {
                 key={lab.id}
                 type="button"
                 onClick={() => setSelectedLab(lab.id)}
-                className={`w-full text-left p-3.5 rounded-lg border transition-colors cursor-pointer ${
+                className={`w-full text-left p-3.5 rounded-lg border transition-all duration-200 cursor-pointer hover:translate-x-1.5 active:scale-[0.99] ${
                   active
-                    ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)]'
-                    : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
+                    ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)] shadow-xs'
+                    : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] hover:border-[var(--border-strong)]'
                 }`}
               >
                 <div className={`text-[11px] font-mono ${active ? 'opacity-80' : 'text-[var(--accent-warm)]'}`}>
@@ -113,7 +113,9 @@ export const SimulationsHub: React.FC = () => {
           <div className="text-xs font-mono text-[var(--text-muted)]">
             Active Simulation · {activeMeta.unit} · {activeMeta.title}
           </div>
-          <SimulationSwitcher simulationId={selectedLab} />
+          <div key={selectedLab} className="animate-fade-in">
+            <SimulationSwitcher simulationId={selectedLab} />
+          </div>
         </main>
       </div>
     </div>

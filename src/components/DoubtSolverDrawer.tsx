@@ -194,7 +194,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/40 backdrop-blur-[1px]"
+        className="fixed inset-0 bg-black/40 backdrop-blur-[2px] animate-fade-in"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -204,7 +204,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
         role="dialog"
         aria-modal="true"
         aria-label="Gemini Doubt Solver Assistant"
-        className="relative z-10 w-full max-w-lg h-full bg-[var(--bg-surface)] border-l border-[var(--border-hairline)] flex flex-col shadow-2xl"
+        className="relative z-10 w-full max-w-lg h-full bg-[var(--bg-surface)] border-l border-[var(--border-hairline)] flex flex-col shadow-2xl animate-slide-in-right"
       >
         {/* Header */}
         <header className="px-4 sm:px-5 py-3.5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)] flex items-center justify-between gap-3">
@@ -260,10 +260,10 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
                   key={tab.id}
                   type="button"
                   onClick={() => setMode(tab.id)}
-                  className={`py-1.5 px-2 text-xs font-medium rounded border transition-colors cursor-pointer ${
+                  className={`py-1.5 px-2 text-xs font-medium rounded border transition-all duration-200 active:scale-95 cursor-pointer ${
                     active
-                      ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)] font-semibold'
-                      : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)] font-semibold shadow-xs'
+                      : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
                   }`}
                 >
                   {tab.label}
@@ -310,7 +310,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
                       key={idx}
                       type="button"
                       onClick={() => void submitQuestion(prompt, mode)}
-                      className="w-full text-left px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] hover:border-[var(--accent-primary)] transition-colors cursor-pointer"
+                      className="w-full text-left px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] hover:border-[var(--accent-primary)] hover:translate-x-1 hover:shadow-2xs active:scale-[0.99] transition-all duration-200 cursor-pointer"
                     >
                       {prompt}
                     </button>
@@ -322,8 +322,8 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
             messages.map((msg) => {
               if (msg.role === 'user') {
                 return (
-                  <div key={msg.id} className="flex justify-end">
-                    <div className="max-w-[88%] px-3.5 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-surface)] text-xs sm:text-sm leading-relaxed">
+                  <div key={msg.id} className="flex justify-end animate-fade-up">
+                    <div className="max-w-[88%] px-3.5 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-surface)] text-xs sm:text-sm leading-relaxed shadow-xs">
                       {msg.text}
                     </div>
                   </div>
@@ -334,7 +334,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
               return (
                 <div
                   key={msg.id}
-                  className="p-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-2.5 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed"
+                  className="p-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-2.5 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed animate-fade-up shadow-2xs"
                 >
                   {blocks.map((block, bIdx) => {
                     if (block.type === 'code') {

@@ -145,9 +145,10 @@ export const CompletionRingChart: React.FC<CompletionRingChartProps> = ({
                 }}
                 style={{
                   opacity: isDimmed ? 0.45 : 1,
-                  transform: isHighlighted ? 'scale(1.03)' : 'scale(1)',
+                  transform: isHighlighted ? 'scale(1.035)' : 'scale(1)',
                   transformOrigin: '0px 0px',
-                  transition: 'opacity 180ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  filter: isHighlighted ? 'drop-shadow(0px 2px 6px rgba(15, 118, 110, 0.3))' : 'none',
+                  transition: 'opacity 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1), filter 220ms ease',
                 }}
                 className="cursor-pointer focus:outline-none"
               >

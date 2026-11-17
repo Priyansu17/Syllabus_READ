@@ -84,9 +84,9 @@ export const HtmlTagsReference: React.FC<HtmlTagsReferenceProps> = ({ onOpenInSa
                 key={item.tag}
                 type="button"
                 onClick={() => setSelectedTag(item)}
-                className={`w-full text-left px-3.5 py-2.5 rounded border transition-colors cursor-pointer ${
+                className={`w-full text-left px-3.5 py-2.5 rounded border transition-all duration-150 hover:translate-x-1 active:scale-[0.99] cursor-pointer ${
                   active
-                    ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)]'
+                    ? 'border-[var(--accent-primary)] bg-[var(--accent-primary)] text-[var(--bg-surface)] shadow-xs'
                     : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
                 }`}
               >
@@ -104,20 +104,21 @@ export const HtmlTagsReference: React.FC<HtmlTagsReferenceProps> = ({ onOpenInSa
           })}
         </div>
 
-        <article className="lg:col-span-8 min-w-0 p-6 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-5">
-          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
-            <div className="min-w-0">
-              <div className="text-xs font-mono text-[var(--accent-warm)]">{selectedTag.category}</div>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mt-1 mb-1">
-                &lt;{selectedTag.tag}&gt;
-              </h2>
-              <code className="text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-subtle)] px-2 py-1 rounded break-all">
-                {selectedTag.syntax}
-              </code>
-            </div>
-            <button
-              type="button"
-              onClick={() => onOpenInSandbox(selectedTag.advancedExample, `<${selectedTag.tag}> Example`)}
+        <article className="lg:col-span-8 min-w-0 p-6 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
+          <div key={selectedTag.tag} className="space-y-5 animate-fade-in">
+            <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
+              <div className="min-w-0">
+                <div className="text-xs font-mono text-[var(--accent-warm)]">{selectedTag.category}</div>
+                <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mt-1 mb-1">
+                  &lt;{selectedTag.tag}&gt;
+                </h2>
+                <code className="text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-subtle)] px-2 py-1 rounded break-all">
+                  {selectedTag.syntax}
+                </code>
+              </div>
+              <button
+                type="button"
+                onClick={() => onOpenInSandbox(selectedTag.advancedExample, `<${selectedTag.tag}> Example`)}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded bg-[var(--accent-primary)] text-[var(--bg-surface)] shrink-0 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5" />
@@ -186,7 +187,8 @@ export const HtmlTagsReference: React.FC<HtmlTagsReferenceProps> = ({ onOpenInSa
               </p>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
       </div>
     </div>
   );

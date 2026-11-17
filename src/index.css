@@ -62,6 +62,15 @@
     color: var(--text-primary);
     margin: 0;
     min-height: 100vh;
+    transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Smooth theme transitions across surfaces */
+  aside, header, nav, button, input, textarea, select {
+    transition-property: background-color, border-color, color, box-shadow, transform;
+    transition-duration: 0.18s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   h1, h2, h3, .font-display {
@@ -143,6 +152,136 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* Polished Transitions & Seamless Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes pulseGlowTeal {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(15, 118, 110, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(15, 118, 110, 0.35);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-down {
+  animation: fadeDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: floatGentle 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-teal {
+  animation: pulseGlowTeal 3s ease-in-out infinite;
+}
+
+.smooth-interactive {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.smooth-interactive:hover {
+  transform: translateY(-1.5px);
+}
+
+.smooth-interactive:active {
+  transform: scale(0.98);
+}
+
 .quantum-card-hover {
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
 }
@@ -165,7 +304,18 @@
   .transform-style-3d {
     transition: none;
   }
-  .diagram-flow-line {
-    animation: none;
+  .diagram-flow-line,
+  .animate-fade-in,
+  .animate-fade-up,
+  .animate-fade-down,
+  .animate-scale-in,
+  .animate-slide-in-right,
+  .animate-slide-in-left,
+  .animate-float,
+  .animate-pulse-teal {
+    animation: none !important;
+  }
+  aside, header, nav, button, input, textarea, select, .smooth-interactive, .quantum-card-hover {
+    transition: none !important;
   }
 }

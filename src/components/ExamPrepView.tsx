@@ -168,7 +168,7 @@ export const ExamPrepView: React.FC<ExamPrepViewProps> = ({ onJumpToTopic }) => 
           {questions.map((item, idx) => (
             <div
               key={`${item.topicId}-${idx}`}
-              className="p-5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-2"
+              className="p-5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-2 quantum-card-hover transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-xs font-mono text-[var(--accent-warm)]">
