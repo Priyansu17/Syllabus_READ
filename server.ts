@@ -70,9 +70,11 @@ const CANDIDATE_MODELS = Array.from(
   new Set(
     [
       process.env.GEMINI_MODEL,
-      'gemini-1.5-flash',
-      'gemini-2.0-flash',
+      'gemini-3.8-flash',
+      'gemini-3.0-flash',
       'gemini-2.5-flash',
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
     ].filter((m): m is string => Boolean(m && m.trim()))
   )
 );
@@ -99,6 +101,7 @@ async function generateWithRetry(
         const msg = err instanceof Error ? err.message : String(err);
         const isNotFound = msg.includes('404') || msg.includes('NOT_FOUND');
         if (isNotFound) {
+          console.warn(`[Gemini] Model ${model} returned 404, attempting next model...`);
           // Try next candidate model
           break;
         }
