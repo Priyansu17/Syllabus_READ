@@ -79,16 +79,17 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
       {/* Editorial Overview Header */}
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--border-hairline)] pb-6">
         <div className="space-y-2 min-w-0">
-          <div className="flex items-center gap-2.5">
-            <div className="h-7 px-2 py-0.5 rounded bg-white border border-[var(--border-hairline)] shadow-2xs flex items-center shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center shrink-0 px-2 py-1 rounded-lg bg-white/95 dark:bg-white shadow-xs border border-black/5">
               <img
                 src="/quantum-university-logo.png"
                 alt="Quantum University"
-                className="h-5 w-auto object-contain"
+                className="h-6 w-auto object-contain"
               />
             </div>
+            <div className="h-5 w-px bg-[var(--border-hairline)] hidden sm:block shrink-0" />
             <span className="text-xs font-mono text-[var(--text-muted)]">
-              CS35302 Web Technology · Student Progress Dashboard
+              Web Technology · Student Progress Dashboard
             </span>
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-primary)] tracking-tight m-0 text-balance">

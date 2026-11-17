@@ -42,30 +42,27 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={() => onNavigate('curriculum')}
-            className="flex items-center gap-3 text-left bg-transparent border-0 p-0 min-w-0 cursor-pointer group"
+            className="flex items-center gap-3 sm:gap-3.5 text-left bg-transparent border-0 p-0 min-w-0 cursor-pointer group"
           >
-            {/* Quantum University Logo Badge */}
-            <div className="h-9 px-2 py-1 rounded-md bg-white/95 border border-[var(--border-hairline)] shadow-xs flex items-center shrink-0 transition-transform duration-200 group-hover:scale-105">
+            {/* Quantum University Logo */}
+            <div className="flex items-center shrink-0 px-2 py-1 rounded-lg bg-white/95 dark:bg-white shadow-xs border border-black/5 transition-transform duration-200 group-hover:scale-102">
               <img
                 src="/quantum-university-logo.png"
                 alt="Quantum University"
-                className="h-6 w-auto object-contain"
+                className="h-7 sm:h-8 w-auto object-contain"
                 loading="eager"
               />
             </div>
 
+            {/* Subtle Vertical Divider */}
+            <div className="h-7 w-px bg-[var(--border-hairline)] hidden sm:block shrink-0" />
+
             <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="font-display text-base sm:text-lg font-semibold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors truncate">
-                  CS35302 Web Technology
-                </span>
-                <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-medium rounded-full bg-[var(--bg-subtle)] text-[var(--accent-primary)] border border-[var(--border-hairline)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  Live Studio
-                </span>
+              <div className="font-display text-base sm:text-lg font-semibold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors truncate">
+                Web Technology
               </div>
               <div className="text-[11px] text-[var(--text-muted)] whitespace-nowrap hidden sm:block">
-                Quantum University · B.Tech CSE Curriculum
+                B.Tech CSE Curriculum · Department of Computer Science
               </div>
             </div>
           </button>
