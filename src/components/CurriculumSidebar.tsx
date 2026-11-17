@@ -125,9 +125,9 @@ export const CurriculumSidebar: React.FC<CurriculumSidebarProps> = ({
               {mastery.percentage}% mastered
             </span>
           </div>
-          <div className="h-1.5 w-full rounded bg-[var(--bg-muted)] overflow-hidden">
+          <div className="h-2 w-full rounded-full bg-[var(--bg-muted)] overflow-hidden shadow-2xs">
             <div
-              className="h-full bg-[var(--accent-primary)] transition-all duration-300"
+              className="h-full bg-gradient-to-r from-teal-600 via-purple-600 to-pink-500 transition-all duration-500 rounded-full"
               style={{ width: `${mastery.percentage}%` }}
             />
           </div>

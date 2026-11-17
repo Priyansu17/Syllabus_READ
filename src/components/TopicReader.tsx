@@ -185,16 +185,16 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
             <button
               type="button"
               onClick={() => onOpenDoubtSolver()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded border border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--accent-primary)] hover:bg-[var(--bg-subtle)] transition-colors whitespace-nowrap cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-purple-400/40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-700 dark:text-purple-300 hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-200 hover:scale-105 whitespace-nowrap cursor-pointer shadow-2xs"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
               Ask Doubt
             </button>
             <button
               type="button"
               onClick={() => onToggleBookmark(topic.id)}
               aria-pressed={isBookmarked}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded border transition-colors whitespace-nowrap cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:scale-105 ${
                 isBookmarked
                   ? 'border-[var(--accent-amber)] bg-[var(--bg-subtle)] text-[var(--accent-amber)]'
                   : 'border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -207,9 +207,9 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
               type="button"
               onClick={() => onToggleComplete(topic.id)}
               aria-pressed={isCompleted}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded border transition-colors whitespace-nowrap cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all duration-200 whitespace-nowrap cursor-pointer hover:scale-105 ${
                 isCompleted
-                  ? 'border-[var(--accent-sage)] bg-[var(--accent-sage)] text-[var(--bg-surface)]'
+                  ? 'border-[var(--accent-sage)] bg-[var(--accent-sage)] text-[var(--bg-surface)] shadow-xs'
                   : 'border-[var(--border-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]'
               }`}
             >

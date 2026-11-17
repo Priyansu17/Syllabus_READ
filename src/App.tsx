@@ -353,16 +353,16 @@ export default function App() {
         </main>
       )}
 
-      {/* Floating Doubt Solver Launcher */}
+      {/* Floating Doubt Solver Launcher with Quantum Brand Accent */}
       {!doubtDrawerOpen && (
         <button
           type="button"
           onClick={() => setDoubtDrawerOpen(true)}
           aria-label="Open Doubt Solver Assistant"
-          className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-surface)] hover:bg-[var(--accent-hover)] shadow-lg text-xs sm:text-sm font-semibold cursor-pointer transition-colors"
+          className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-full bg-gradient-to-r from-purple-800 via-fuchsia-700 to-pink-600 text-white shadow-lg hover:shadow-2xl text-xs sm:text-sm font-semibold cursor-pointer transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 ring-4 ring-pink-500/20 active:scale-95"
         >
-          <Sparkles className="w-4 h-4" />
-          <span>Doubt Solver</span>
+          <Sparkles className="w-4 h-4 text-yellow-300" />
+          <span>Ask Study Assistant</span>
         </button>
       )}
 

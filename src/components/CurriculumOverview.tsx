@@ -78,9 +78,18 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
     >
       {/* Editorial Overview Header */}
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--border-hairline)] pb-6">
-        <div className="space-y-1.5 min-w-0">
-          <div className="text-xs font-mono text-[var(--text-muted)]">
-            CS35302 Web Technology · Student Progress Dashboard
+        <div className="space-y-2 min-w-0">
+          <div className="flex items-center gap-2.5">
+            <div className="h-7 px-2 py-0.5 rounded bg-white border border-[var(--border-hairline)] shadow-2xs flex items-center shrink-0">
+              <img
+                src="/quantum-university-logo.png"
+                alt="Quantum University"
+                className="h-5 w-auto object-contain"
+              />
+            </div>
+            <span className="text-xs font-mono text-[var(--text-muted)]">
+              CS35302 Web Technology · Student Progress Dashboard
+            </span>
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-primary)] tracking-tight m-0 text-balance">
             Curriculum Overview
@@ -94,7 +103,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           <button
             type="button"
             onClick={() => onSelectTopic(resumeTopic.id)}
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded bg-[var(--accent-primary)] text-[var(--bg-surface)] hover:bg-[var(--accent-hover)] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-gradient-to-r from-teal-700 to-emerald-700 hover:from-teal-600 hover:to-emerald-600 text-white shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap shrink-0 cursor-pointer"
           >
             <span>
               {summary.completedTopics === summary.totalTopics
@@ -111,9 +120,9 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
       {/* Single-Elevation 4-Column KPI Strip */}
       <div
         aria-label="Progress Metrics Summary"
-        className="grid grid-cols-2 lg:grid-cols-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden"
+        className="grid grid-cols-2 lg:grid-cols-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden shadow-xs"
       >
-        <div className="p-4 sm:p-5 space-y-1 border-b lg:border-b-0 border-r border-[var(--border-hairline)]">
+        <div className="p-4 sm:p-5 space-y-1 border-b lg:border-b-0 border-r border-[var(--border-hairline)] hover:bg-[var(--bg-subtle)]/40 transition-colors">
           <div className="text-xs text-[var(--text-muted)]">Topics Mastered</div>
           <div className="font-mono text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
             {summary.completedTopics}
@@ -127,7 +136,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 space-y-1 border-b lg:border-b-0 lg:border-r border-[var(--border-hairline)]">
+        <div className="p-4 sm:p-5 space-y-1 border-b lg:border-b-0 lg:border-r border-[var(--border-hairline)] hover:bg-[var(--bg-subtle)]/40 transition-colors">
           <div className="text-xs text-[var(--text-muted)]">Syllabus Hours Covered</div>
           <div className="font-mono text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
             {summary.completedHours}
@@ -141,7 +150,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 space-y-1 border-r border-[var(--border-hairline)]">
+        <div className="p-4 sm:p-5 space-y-1 border-r border-[var(--border-hairline)] hover:bg-[var(--bg-subtle)]/40 transition-colors">
           <div className="text-xs text-[var(--text-muted)]">Units Completed</div>
           <div className="font-mono text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
             {summary.completedUnits}
@@ -155,7 +164,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 space-y-1">
+        <div className="p-4 sm:p-5 space-y-1 hover:bg-[var(--bg-subtle)]/40 transition-colors">
           <div className="text-xs text-[var(--text-muted)]">Saved for Revision</div>
           <div className="font-mono text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
             {summary.bookmarkedCount}
@@ -169,7 +178,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
       {/* Main Split: D3 Completion Ring + Unit Breakdown (Left) | Studied Timeline (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Panel: D3 Completion Ring + Unit Breakdown */}
-        <div className="lg:col-span-5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6 space-y-6">
+        <div className="lg:col-span-5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6 space-y-6 quantum-card-hover shadow-xs">
           <div className="flex items-center justify-between gap-2">
             <div>
               <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] m-0">
@@ -272,7 +281,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
         </div>
 
         {/* Right Panel: Chronological Timeline of Studied Topics */}
-        <div className="lg:col-span-7 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6 space-y-5">
+        <div className="lg:col-span-7 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6 space-y-5 quantum-card-hover shadow-xs">
           <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
             <div>
               <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] m-0">
