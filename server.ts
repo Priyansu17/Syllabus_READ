@@ -71,7 +71,16 @@ function buildSystemInstruction(body: DoubtRequestBody): string {
   ].join('\n\n');
 }
 
-const DEFAULT_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const CANDIDATE_MODELS = Array.from(
+  new Set(
+    [
+      process.env.GEMINI_MODEL,
+      'gemini-1.5-flash',
+      'gemini-2.0-flash',
+      'gemini-2.5-flash',
+    ].filter((m): m is string => Boolean(m && m.trim()))
+  )
+);
 
 async function generateWithRetry(
   ai: GoogleGenAI,
@@ -79,23 +88,31 @@ async function generateWithRetry(
   systemInstruction: string
 ) {
   let lastErr: unknown;
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      return await ai.models.generateContent({
-        model: DEFAULT_MODEL,
-        contents,
-        config: {
-          systemInstruction,
-        },
-      });
-    } catch (err) {
-      lastErr = err;
-      const msg = err instanceof Error ? err.message : String(err);
-      const isTransient = msg.includes('503') || msg.includes('500') || msg.includes('ECONNRESET');
-      if (!isTransient || attempt === 1) {
-        throw err;
+  for (const model of CANDIDATE_MODELS) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents,
+          config: {
+            systemInstruction,
+          },
+        });
+        return { response, modelUsed: model };
+      } catch (err) {
+        lastErr = err;
+        const msg = err instanceof Error ? err.message : String(err);
+        const isNotFound = msg.includes('404') || msg.includes('NOT_FOUND');
+        if (isNotFound) {
+          // Try next candidate model
+          break;
+        }
+        const isTransient = msg.includes('503') || msg.includes('500') || msg.includes('ECONNRESET');
+        if (!isTransient || attempt === 1) {
+          throw err;
+        }
+        await new Promise((r) => setTimeout(r, 450));
       }
-      await new Promise((r) => setTimeout(r, 450));
     }
   }
   throw lastErr;
@@ -106,7 +123,7 @@ async function startServer() {
   app.use(express.json({ limit: '1mb' }));
 
   app.get('/api/health', (_req: Request, res: Response) => {
-    res.json({ ok: true, model: DEFAULT_MODEL });
+    res.json({ ok: true, model: CANDIDATE_MODELS[0] });
   });
 
   app.post('/api/doubt-solver', async (req: Request, res: Response) => {
@@ -159,7 +176,7 @@ async function startServer() {
       ];
 
       const systemInstruction = buildSystemInstruction(body);
-      const response = await generateWithRetry(ai, contents, systemInstruction);
+      const { response, modelUsed } = await generateWithRetry(ai, contents, systemInstruction);
       const answer = response.text?.trim();
 
       if (!answer) {
@@ -169,7 +186,7 @@ async function startServer() {
         return;
       }
 
-      res.json({ answer, model: DEFAULT_MODEL });
+      res.json({ answer, model: modelUsed });
     } catch (err) {
       const rawMessage = err instanceof Error ? err.message : 'Unexpected server error';
       let status = 500;
