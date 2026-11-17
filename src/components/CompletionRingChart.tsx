@@ -27,17 +27,19 @@ export const CompletionRingChart: React.FC<CompletionRingChartProps> = ({
   selectedUnit,
   onSelectUnit,
 }) => {
-  const innerArcRef = useRef<SVGPathElement | null>(null);
-  const prevFractionRef = useRef<number>(0);
   const [hoveredUnit, setHoveredUnit] = useState<number | null>(null);
 
   const pieSlices = useMemo(() => {
-    const pieGen = d3
-      .pie<UnitProgressItem>()
-      .value((d) => Math.max(1, d.total))
-      .sort(null)
-      .padAngle(0.035);
-    return pieGen(unitProgress);
+    try {
+      const pieGen = d3
+        .pie<UnitProgressItem>()
+        .value((d) => Math.max(1, d.total))
+        .sort(null)
+        .padAngle(0.035);
+      return pieGen(unitProgress);
+    } catch {
+      return [];
+    }
   }, [unitProgress]);
 
   const outerTrackArcGen = useMemo(
@@ -61,47 +63,28 @@ export const CompletionRingChart: React.FC<CompletionRingChartProps> = ({
   );
 
   const innerTrackPath = useMemo(() => {
-    const gen = d3.arc<unknown>().innerRadius(74).outerRadius(94);
-    return gen({ startAngle: 0, endAngle: Math.PI * 2 } as unknown as d3.DefaultArcObject) || '';
+    try {
+      const gen = d3.arc<unknown>().innerRadius(74).outerRadius(94);
+      return gen({ startAngle: 0, endAngle: Math.PI * 2 } as unknown as d3.DefaultArcObject) || '';
+    } catch {
+      return '';
+    }
   }, []);
 
-  useEffect(() => {
-    const el = innerArcRef.current;
-    if (!el) return;
-
-    const targetFraction =
-      totalTopics > 0 ? Math.max(0, Math.min(1, completedTopics / totalTopics)) : 0;
-    const startFraction = prevFractionRef.current;
-
-    const arcGen = d3
-      .arc<{ endAngle: number }>()
-      .innerRadius(74)
-      .outerRadius(94)
-      .startAngle(0)
-      .cornerRadius(6);
-
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      d3.select(el).attr('d', arcGen({ endAngle: targetFraction * Math.PI * 2 }) || '');
-      prevFractionRef.current = targetFraction;
-      return;
+  const innerArcPath = useMemo(() => {
+    if (totalTopics <= 0 || completedTopics <= 0) return '';
+    try {
+      const fraction = Math.min(1, Math.max(0, completedTopics / totalTopics));
+      const arcGen = d3
+        .arc<{ endAngle: number }>()
+        .innerRadius(74)
+        .outerRadius(94)
+        .startAngle(0)
+        .cornerRadius(6);
+      return arcGen({ endAngle: fraction * Math.PI * 2 }) || '';
+    } catch {
+      return '';
     }
-
-    const interp = d3.interpolateNumber(startFraction, targetFraction);
-    d3.select(el)
-      .interrupt()
-      .transition()
-      .duration(520)
-      .ease(d3.easeCubicOut)
-      .attrTween('d', () => (t: number) => {
-        const frac = interp(t);
-        return frac <= 0.001 ? '' : arcGen({ endAngle: frac * Math.PI * 2 }) || '';
-      });
-
-    prevFractionRef.current = targetFraction;
   }, [completedTopics, totalTopics]);
 
   const activeUnitNumber = hoveredUnit ?? (selectedUnit !== 'all' ? selectedUnit : null);
@@ -121,9 +104,9 @@ export const CompletionRingChart: React.FC<CompletionRingChartProps> = ({
         aria-label={`Course completion ring chart: ${overallPercentage}% overall (${completedTopics} of ${totalTopics} topics completed)`}
       >
         <g transform="translate(160, 160)">
-          {/* Inner Overall Progress Track + Animated D3 Arc */}
+          {/* Inner Overall Progress Track + Arc */}
           <path d={innerTrackPath} fill="var(--bg-muted)" />
-          <path ref={innerArcRef} fill="var(--accent-primary)" />
+          {innerArcPath && <path d={innerArcPath} fill="var(--accent-primary)" />}
 
           {/* Outer Unit-by-Unit Segmented Completion Ring */}
           {pieSlices.map((slice, idx) => {

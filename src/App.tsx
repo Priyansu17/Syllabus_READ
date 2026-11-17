@@ -5,6 +5,7 @@ import { Header, type AppView } from './components/Header';
 import { ReadingScrollBar } from './components/ReadingScrollBar';
 import { CurriculumSidebar } from './components/CurriculumSidebar';
 import { CurriculumOverview } from './components/CurriculumOverview';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { TopicReader } from './components/TopicReader';
 import { SimulationsHub } from './components/SimulationsHub';
 import { HtmlTagsReference } from './components/HtmlTagsReference';
@@ -270,15 +271,20 @@ export default function App() {
             </div>
 
             {curriculumSubView === 'overview' ? (
-              <CurriculumOverview
-                units={SYLLABUS_UNITS}
-                allTopics={ALL_TOPICS_FLAT}
-                completedIds={completedIds}
-                bookmarkedIds={bookmarkedIds}
-                studyHistory={studyHistory}
-                onSelectTopic={handleSelectTopic}
-                onToggleComplete={toggleComplete}
-              />
+              <ErrorBoundary
+                fallbackTitle="Curriculum Overview encountered an error"
+                onReset={() => setCurriculumSubView('topic')}
+              >
+                <CurriculumOverview
+                  units={SYLLABUS_UNITS}
+                  allTopics={ALL_TOPICS_FLAT}
+                  completedIds={completedIds}
+                  bookmarkedIds={bookmarkedIds}
+                  studyHistory={studyHistory}
+                  onSelectTopic={handleSelectTopic}
+                  onToggleComplete={toggleComplete}
+                />
+              </ErrorBoundary>
             ) : (
               <TopicReader
                 topic={activeTopic}
