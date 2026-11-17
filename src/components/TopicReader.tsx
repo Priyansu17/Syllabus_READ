@@ -185,9 +185,9 @@ export const TopicReader: React.FC<TopicReaderProps> = ({
             <button
               type="button"
               onClick={() => onOpenDoubtSolver()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-purple-400/40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-700 dark:text-purple-300 hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-200 hover:scale-105 whitespace-nowrap cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-[var(--accent-primary)] bg-[var(--bg-subtle)] text-[var(--accent-primary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-surface)] transition-all duration-200 hover:scale-102 whitespace-nowrap cursor-pointer shadow-2xs"
             >
-              <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+              <Sparkles className="w-3.5 h-3.5" />
               Ask Doubt
             </button>
             <button

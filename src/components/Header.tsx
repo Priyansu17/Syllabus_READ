@@ -96,8 +96,8 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => onNavigate('sandbox')}
             className={`px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg shadow-xs transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
               activeView === 'sandbox'
-                ? 'bg-gradient-to-r from-purple-700 to-pink-600 text-white shadow-md scale-105'
-                : 'bg-gradient-to-r from-teal-700 to-emerald-700 hover:from-teal-600 hover:to-emerald-600 text-white hover:shadow-md hover:-translate-y-0.5'
+                ? 'bg-[var(--accent-warm)] text-[var(--bg-surface)] shadow-md scale-102'
+                : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-[var(--bg-surface)] hover:shadow-md hover:-translate-y-0.5'
             }`}
           >
             Code Sandbox

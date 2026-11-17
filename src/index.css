@@ -26,13 +26,6 @@
     --accent-sage: #15803D;
     --accent-crimson: #B91C1C;
     --accent-cyan: #0E7490;
-
-    /* Quantum University Official Identity Palette */
-    --quantum-pink: #E91E8F;
-    --quantum-purple: #8E258D;
-    --quantum-purple-dark: #6B176A;
-    --quantum-gradient: linear-gradient(135deg, #8E258D 0%, #E91E8F 100%);
-    --quantum-glow: 0 0 20px rgba(233, 30, 143, 0.25);
   }
 
   .dark {
@@ -55,13 +48,6 @@
     --accent-sage: #4ADE80;
     --accent-crimson: #F87171;
     --accent-cyan: #22D3EE;
-
-    /* Quantum University Dark Brand Glow */
-    --quantum-pink: #F43F9E;
-    --quantum-purple: #A833A7;
-    --quantum-purple-dark: #8E258D;
-    --quantum-gradient: linear-gradient(135deg, #A833A7 0%, #F43F9E 100%);
-    --quantum-glow: 0 0 25px rgba(244, 63, 158, 0.35);
   }
 
   html {
@@ -145,22 +131,6 @@
   animation: flowDash 1.1s linear infinite;
 }
 
-/* Dynamic Interactive Animations */
-@keyframes subtlePulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 4px 14px rgba(142, 37, 141, 0.25);
-  }
-  50% {
-    transform: scale(1.02);
-    box-shadow: 0 6px 22px rgba(233, 30, 143, 0.4);
-  }
-}
-
-.animate-quantum-pulse {
-  animation: subtlePulse 3s ease-in-out infinite;
-}
-
 .glass-panel {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
@@ -179,13 +149,13 @@
 
 .quantum-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(142, 37, 141, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
-  border-color: rgba(233, 30, 143, 0.35);
+  box-shadow: 0 8px 24px -4px rgba(15, 118, 110, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+  border-color: var(--accent-primary);
 }
 
 .dark .quantum-card-hover:hover {
-  box-shadow: 0 8px 24px -4px rgba(244, 63, 158, 0.18), 0 4px 8px -2px rgba(0, 0, 0, 0.3);
-  border-color: rgba(244, 63, 158, 0.4);
+  box-shadow: 0 8px 24px -4px rgba(45, 212, 191, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
