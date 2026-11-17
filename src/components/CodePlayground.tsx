@@ -25,7 +25,7 @@ export const DEFAULT_PLAYGROUND_PRESETS: PlaygroundPreset[] = [
 </head>
 <body>
   <article class="card">
-    <span class="badge">CS35302 · Live Sandbox</span>
+    <span class="badge">Web Technology · Live Sandbox</span>
     <h2 style="margin: 8px 0;">Interactive Try-It Window</h2>
     <p>Edit the HTML, CSS, or JavaScript on the left and click <strong>Run Code</strong>.</p>
     <button id="btn" type="button">Test DOM Event</button>

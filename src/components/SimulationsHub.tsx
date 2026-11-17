@@ -72,7 +72,7 @@ export const SimulationsHub: React.FC = () => {
     <div className="max-w-6xl mx-auto px-4 sm:px-8 py-8 space-y-6">
       <header className="space-y-2 border-b border-[var(--border-hairline)] pb-5">
         <div className="text-xs font-mono text-[var(--accent-warm)]">
-          CS35302 Interactive Laboratory · 9 Live Protocol &amp; Architecture Simulators
+          Web Technology Interactive Laboratory · 9 Live Protocol &amp; Architecture Simulators
         </div>
         <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-primary)] m-0">
           Interactive Concept &amp; Protocol Simulations

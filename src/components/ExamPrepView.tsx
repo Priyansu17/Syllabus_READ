@@ -73,7 +73,7 @@ export const ExamPrepView: React.FC<ExamPrepViewProps> = ({ onJumpToTopic }) => 
     <div className="max-w-6xl mx-auto px-4 sm:px-8 py-8 space-y-8">
       <header className="space-y-2 border-b border-[var(--border-hairline)] pb-5">
         <div className="text-xs font-mono text-[var(--accent-warm)]">
-          Quantum University · CS35302 Official Syllabus &amp; Question Bank ({totalHours} Lecture Hours)
+          Quantum University · Web Technology Syllabus &amp; Question Bank ({totalHours} Lecture Hours)
         </div>
         <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-primary)] m-0">
           Syllabus Blueprint &amp; Exam Revision Guide

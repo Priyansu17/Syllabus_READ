@@ -335,7 +335,7 @@ export default function App() {
           <header className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
             <div>
               <div className="text-xs font-mono text-[var(--accent-warm)]">
-                CS35302 Live Execution Window
+                Interactive Live Execution Window
               </div>
               <h1 className="font-display text-2xl font-semibold text-[var(--text-primary)] m-0">
                 HTML, CSS &amp; JavaScript Try-It Editor

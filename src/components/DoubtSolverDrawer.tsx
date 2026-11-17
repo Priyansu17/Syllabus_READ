@@ -203,7 +203,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="CS35302 Gemini Doubt Solver Assistant"
+        aria-label="Gemini Doubt Solver Assistant"
         className="relative z-10 w-full max-w-lg h-full bg-[var(--bg-surface)] border-l border-[var(--border-hairline)] flex flex-col shadow-2xl"
       >
         {/* Header */}
@@ -211,7 +211,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
           <div className="min-w-0">
             <div className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
               <Sparkles className="w-3.5 h-3.5" />
-              CS35302 Doubt Solver
+              Doubt Solver
             </div>
             <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] m-0 truncate">
               Ask Your Study Assistant
@@ -476,7 +476,7 @@ export const DoubtSolverDrawer: React.FC<DoubtSolverDrawerProps> = ({
           </div>
           <div className="text-[11px] text-[var(--text-muted)] flex items-center justify-between">
             <span>Enter to send · Shift+Enter for new line</span>
-            <span>CS35302 Tutor</span>
+            <span>Study Assistant</span>
           </div>
         </form>
       </aside>

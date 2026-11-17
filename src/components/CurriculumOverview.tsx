@@ -104,7 +104,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           <button
             type="button"
             onClick={() => onSelectTopic(resumeTopic.id)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-gradient-to-r from-teal-700 to-emerald-700 hover:from-teal-600 hover:to-emerald-600 text-white shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-[var(--bg-surface)] shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap shrink-0 cursor-pointer"
           >
             <span>
               {summary.completedTopics === summary.totalTopics
@@ -291,7 +291,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
               <p className="text-xs text-[var(--text-muted)] m-0 mt-0.5">
                 {selectedUnitMeta
                   ? `Filtered to ${selectedUnitMeta.unitCode}: ${selectedUnitMeta.title}`
-                  : 'Most recently studied and completed CS35302 topics'}
+                  : 'Most recently studied and completed topics'}
               </p>
             </div>
 
