@@ -32,11 +32,6 @@ function createGeminiClient(): GoogleGenAI | null {
   if (!apiKey) return null;
   return new GoogleGenAI({
     apiKey,
-    httpOptions: {
-      headers: {
-        'User-Agent': 'aistudio-build',
-      },
-    },
   });
 }
 
@@ -201,7 +196,7 @@ async function startServer() {
         userMessage = 'Rate limit reached momentarily. Please wait a few seconds and try again.';
       } else if (rawMessage.includes('404') || rawMessage.includes('NOT_FOUND')) {
         status = 404;
-        userMessage = 'Configured Gemini model was not found. Please verify model availability.';
+        userMessage = `Gemini model error: ${rawMessage}. Please verify available models for your API key.`;
       }
 
       res.status(status).json({ error: userMessage });
