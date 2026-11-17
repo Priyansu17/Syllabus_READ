@@ -1,5 +1,6 @@
 {
-  "name": "react-example",
+  "name": "syllabus-read-web-tech",
+  "description": "Interactive syllabus, study guides, code playgrounds, and AI doubt solver for CS35302 Web Technology.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
