@@ -105,9 +105,15 @@ async function generateWithRetry(
           // Try next candidate model
           break;
         }
-        const isTransient = msg.includes('503') || msg.includes('500') || msg.includes('ECONNRESET');
+        const isHighDemand = msg.includes('503') || msg.includes('UNAVAILABLE') || msg.includes('high demand');
+        if (isHighDemand) {
+          console.warn(`[Gemini] Model ${model} is experiencing high demand (503), falling back to next candidate model...`);
+          // Try next candidate model immediately
+          break;
+        }
+        const isTransient = msg.includes('500') || msg.includes('ECONNRESET');
         if (!isTransient || attempt === 1) {
-          throw err;
+          break;
         }
         await new Promise((r) => setTimeout(r, 450));
       }
